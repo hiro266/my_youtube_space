@@ -1,0 +1,9 @@
+ja:
+  user_sessions:
+    new:
+      login: ログイン
+      to_create_page: 登録ページへ
+  users:
+    new:
+      user_create: ユーザー登録
+      to_login_page: ログインページへ
