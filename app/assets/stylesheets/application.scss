@@ -1,4 +1,10 @@
 @import 'bootstrap-material-design/dist/css/bootstrap-material-design';
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
-@import 'top.scss'
+@import 'top.scss';
+
+a {
+  &:hover {
+    text-decoration: none;
+  }
+}
