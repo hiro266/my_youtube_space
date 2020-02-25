@@ -1,6 +1,9 @@
 .col-sm-12.col-lg-6.mt-2.mb-2
   .card
     iframe[height="250" src="https://www.youtube.com/embed/#{post.youtube_url.last(11)}"]
+    div.p-4[style="text-align: right;"]
+      = link_to icon('fas', 'pen'), edit_post_path(post), class: 'pr-2'
+      = link_to icon('fas', 'trash-alt'), post_path(post), method: :delete, data: { confirm: '削除してよろしいですか？' }
     .card-body
       h5.card-title
         | #{post.title}
