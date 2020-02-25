@@ -2,7 +2,6 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[edit update destroy]
   def index
     @posts = current_user.posts.includes(:user)
-    # @post = Post.find(1)
   end
 
   def new
@@ -25,6 +24,12 @@ class PostsController < ApplicationController
   def edit; end
 
   def update
+    if @post.update(post_params)
+      redirect_to posts_url, success: '投稿を編集しました'
+    else
+      flash.now[:danger] = '投稿の編集に失敗しました'
+      render :edit
+    end
   end
 
   def destroy
