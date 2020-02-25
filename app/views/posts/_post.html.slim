@@ -4,6 +4,7 @@
     div.px-4.pt-3[style="text-align: right;"]
       = link_to icon('fas', 'pen'), edit_post_path(post), class: 'pr-2'
       = link_to icon('fas', 'trash-alt'), post_path(post), method: :delete, data: { confirm: '削除してよろしいですか？' }
-    .card-body
-      h5.card-title
-        | #{post.title}
+    = link_to post_path(post) do
+      .card-body
+        h1.card-title.text-dark
+          | #{post.title}
