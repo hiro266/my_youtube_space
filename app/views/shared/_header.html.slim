@@ -10,5 +10,11 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
         | Search
     ul.navbar-nav.ml-auto
       li.nav-item.active
+        = link_to posts_path, class: 'nav-link' do
+          | 投稿一覧
+      li.nav-item.active
+        = link_to new_post_path, class: 'nav-link' do
+          | 新規投稿
+      li.nav-item.active
         = link_to logout_path, method: :delete, class: 'nav-link' do
           | ログアウト
