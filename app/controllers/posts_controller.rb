@@ -25,7 +25,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to posts_url, success: '投稿を編集しました'
+      redirect_to post_url, success: '投稿を編集しました'
     else
       flash.now[:danger] = '投稿の編集に失敗しました'
       render :edit
@@ -33,6 +33,8 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post.destroy!
+    redirect_to posts_url, success: '投稿を削除しました'
   end
 
   private
