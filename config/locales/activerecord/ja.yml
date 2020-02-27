@@ -9,3 +9,10 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード確認
+  views:
+    pagination:
+      first: 最初
+      last: 最後
+      previous: 前
+      next: 次
+      truncate: ...

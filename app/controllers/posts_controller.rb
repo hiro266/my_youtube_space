@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
   def index
-    @posts = current_user.posts.includes(:user)
+    @posts = current_user.posts.includes(:user).page(params[:page])
   end
 
   def new
