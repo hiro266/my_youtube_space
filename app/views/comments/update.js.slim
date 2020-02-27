@@ -1,0 +1,8 @@
+/ エラーメッセージをリセット
+| $('#js-comment-update-error').empty();
+- if @comment.errors.present?
+  - @comment.errors.full_messages.each do |msg|
+    | $('#js-comment-update-error').append("#{ msg }");
+- else
+  | $("#comment-#{@comment.id}").html("#{j render('comments/comment', comment: @comment)}");
+  | $("#comment-edit-modal").modal('hide');
