@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_25_083535) do
+ActiveRecord::Schema.define(version: 2020_02_27_091817) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "body", null: false
@@ -32,6 +32,22 @@ ActiveRecord::Schema.define(version: 2020_02_25_083535) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "tagmaps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_tagmaps_on_post_id"
+    t.index ["tag_id"], name: "index_tagmaps_on_tag_id"
+  end
+
+  create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "tag"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag"], name: "index_tags_on_tag", unique: true
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"
@@ -45,4 +61,6 @@ ActiveRecord::Schema.define(version: 2020_02_25_083535) do
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "posts", "users"
+  add_foreign_key "tagmaps", "posts"
+  add_foreign_key "tagmaps", "tags"
 end
