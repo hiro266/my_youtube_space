@@ -1,0 +1,10 @@
+div id="comment-#{comment.id}"
+  .container
+    .row
+      .col-10
+        p.mb-0
+          = comment.body
+      .col-2
+        = link_to icon('fas', 'pen'), edit_comment_path(comment), remote: true
+        = link_to icon('fas', 'trash-alt'), comment_path(comment), remote: true, method: :delete, data: { confirm: '削除してよろしいですか？' }
+  hr

@@ -1,0 +1,10 @@
+/ エラーメッセージをリセット
+| $('#js-comment-create-error').empty();
+- if @comment.errors.present?
+  - @comment.errors.full_messages.each do |msg|
+    | $('#js-comment-create-error').append("#{ msg }");
+- else
+  / ajax通信で更新させたい部分
+  | $('.comments-box').prepend("#{j render('comments/comment', comment: @comment)}");
+  / インプットフォームの中身をリセット
+  | $('.input-comment-body').val('');
