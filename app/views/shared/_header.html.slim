@@ -12,7 +12,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
         = link_to new_post_path, class: 'nav-link header-link' do
           | 新規投稿
       li.nav-item.active
-        = link_to image_tag(current_user.user_image.url, class: 'rounded-circle mr15', width: '40', height: '40'), '#', class: 'nav-link', data: { toggle: 'dropdown' }, aria: {haspopup: 'true', expanded: 'false' }, id: 'header-profile'
+        = link_to image_tag(current_user.user_image.url, class: 'rounded-circle mr15', width: '40', height: '40'), profile_path, class: 'nav-link'
       li.nav-item.active
         = link_to logout_path, method: :delete, class: 'nav-link header-link' do
           | ログアウト
