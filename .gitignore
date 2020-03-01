@@ -30,3 +30,5 @@
 /config/database.yml
 
 docker-compose.yml
+
+/public/uploads

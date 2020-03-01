@@ -1,0 +1,26 @@
+.container.pt-3
+  .row
+    .col-md-10.offset-md-1
+      h1.float-left.mb-5
+        | プロフィール
+      = link_to  '編集', edit_profile_path, class: 'btn btn-primary btn-raised float-right'
+      table.table
+        tbody
+          tr
+            th[scope="row"]
+              span.translation_missing
+                | メールアドレス
+            td
+              = current_user.email
+          tr
+            th[scope="row"]
+              span.translation_missing
+                | 氏名
+            td
+              = current_user.user_name
+          tr
+            th[scope="row"]
+              span.translation_missing
+                | アバター
+            td
+              = image_tag(current_user.user_image.url, id: :img_prev, class: 'rounded-circle', size: '50')

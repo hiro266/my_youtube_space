@@ -6,11 +6,13 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
   #navbarSupportedContent.collapse.navbar-collapse
     ul.navbar-nav.ml-auto
       li.nav-item.active
-        = link_to posts_path, class: 'nav-link' do
+        = link_to posts_path, class: 'nav-link header-link' do
           | 投稿一覧
       li.nav-item.active
-        = link_to new_post_path, class: 'nav-link' do
+        = link_to new_post_path, class: 'nav-link header-link' do
           | 新規投稿
       li.nav-item.active
-        = link_to logout_path, method: :delete, class: 'nav-link' do
+        = link_to image_tag(current_user.user_image.url, class: 'rounded-circle mr15', width: '40', height: '40'), profile_path, class: 'nav-link'
+      li.nav-item.active
+        = link_to logout_path, method: :delete, class: 'nav-link header-link' do
           | ログアウト
