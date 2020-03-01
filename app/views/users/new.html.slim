@@ -20,6 +20,6 @@
         .form-group
           = f.label :password_confirmation
           = f.password_field :password_confirmation, class: "form-control"
-        = f.submit '登録する', class: "btn btn-primary"
+        = f.submit '登録する', class: "btn btn-primary btn-raised"
       .text-center
         = link_to t('.to_login_page'), login_path
