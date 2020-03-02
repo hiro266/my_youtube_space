@@ -12,8 +12,6 @@
             = link_to icon('fas', 'trash-alt'), post_path(@post), method: :delete, data: { confirm: '削除してよろしいですか？' }
         h1.card-title.p-3
           | #{@post.title}
-        p.card-title.px-3
-          | #{@post.body}
     .col-sm-12.col-lg-3.mt-2.mb-2
       .card.h-75
         = render 'comments/comments', comments: @comments
