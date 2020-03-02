@@ -3,6 +3,7 @@ ja:
     new:
       login: ログイン
       to_create_page: 登録ページへ
+      reset_password: パスワードをお忘れですか？
   users:
     new:
       user_create: ユーザー登録
