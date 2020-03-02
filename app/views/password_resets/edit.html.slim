@@ -1,0 +1,18 @@
+.container
+  .row
+    .col-md-10.offset-md-1.col-lg-8.offset-lg-2
+      h1
+        | パスワードリセット
+      = form_with(model: @user, url: password_reset_path(@token), local: true) do |f|
+        .form-group
+          = f.label :email
+          p
+            = @user.email
+        .form-group
+          = f.label :password
+          = f.password_field :password, class: "form-control"
+        .form-group
+          = f.label :password_confirmation
+          = f.password_field :password_confirmation, class: "form-control"
+        .action.mt-3.text-center
+          = f.submit '更新する', class: "btn btn-primary btn-raised"
