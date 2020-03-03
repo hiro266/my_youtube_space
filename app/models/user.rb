@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
+  include Common_Processing
   mount_uploader :user_image, ImageUploader
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -9,4 +10,5 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
   validates :user_name, presence: true, length: { maximum: 255 }
   validates :email, uniqueness: true, presence: true
+  enum role: { general: 0, admin: 1 }
 end
