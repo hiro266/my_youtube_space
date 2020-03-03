@@ -34,8 +34,7 @@ class Admin::UsersController < Admin::BaseController
   def user_params
     params.require(:user).permit(
       :email,
-      :last_name,
-      :first_name,
+      :user_name,
       :user_image,
       :role
     )
