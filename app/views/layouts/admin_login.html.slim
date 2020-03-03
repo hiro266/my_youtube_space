@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    meta[name="viewport" content="width=device-width, initial-scale=1.0"]
+    title
+      | 管理ログイン画面
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'admin', media: 'all'
+    = javascript_include_tag 'admin'
+  body
+    .login-page
+      .login-box
+        = render 'shared/flash_message'
+        = yield

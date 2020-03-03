@@ -1,0 +1,22 @@
+.container
+  .row
+    .col-md-10.offset-md-1.col-lg-8.offset-lg-2
+      h1
+        | ユーザー編集
+      = render 'layouts/error_messages', object: @user
+      = form_with model: @user, url: admin_user_path, local: true do |f|
+        .form-group
+          = f.label :email
+          = f.email_field :email, class: "form-control"
+        .form-group
+          = f.label :user_name
+          = f.text_field :user_name, class: "form-control"
+        .form-group
+          = f.label :user_image
+          = f.file_field :user_image, class: "form-control"
+        = image_tag(@user.user_image.url, id: :img_prev, class: 'rounded-circle', size: '100')
+        .form-group
+          = f.label :role
+          = f.select :role, User.roles.keys.map { |k| [I18n.t("enums.user.role.#{k}"), k] }, {}, {class:"form-control"}
+        .action.mt-3
+          = f.submit class: "btn btn-primary"

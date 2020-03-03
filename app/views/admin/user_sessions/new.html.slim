@@ -1,0 +1,23 @@
+.login-logo
+  h1
+    | ログイン
+.card
+  .card-body.login-card-body
+    = form_with(url: admin_login_path, method: :post, local: true) do |f|
+      = f.label :email, User.human_attribute_name('email')
+      .input-group.mb-3
+        = f.text_field :email, class: "form-control", placeholder: "Email"
+        .input-group-append
+          .input-group-text
+            span.fas.fa-envelope
+      = f.label :password, User.human_attribute_name('password')
+      .input-group.mb-3
+        = f.password_field :password, class: "form-control", placeholder: "Password"
+        .input-group-append
+          .input-group-text
+            span.fas.fa-lock
+      .row
+        .col-12
+          = f.submit 'ログイン', class: "btn  btn-block btn-primary"
+      .text-center
+        = link_to t('.to_create_page'), new_user_path

@@ -16,3 +16,8 @@ ja:
       previous: 前
       next: 次
       truncate: ...
+  enums:
+    user:
+      role:
+        general: 一般
+        admin: 管理者

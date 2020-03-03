@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  include Common_Processing
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :tagmaps, dependent: :destroy

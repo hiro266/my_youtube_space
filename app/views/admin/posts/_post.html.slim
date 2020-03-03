@@ -1,0 +1,13 @@
+tr
+  td
+    = post.id
+  td
+    = link_to post.title, admin_post_path(post)
+  td
+    = post.user.user_name
+  td
+    = l post.created_at, format: :long
+  td
+    = link_to '編集', edit_admin_post_path(post), class: 'btn btn-success'
+    = link_to '削除', admin_post_path(post), class: 'btn btn-danger',
+      method: :delete, data: { confirm: '削除してよろしいですか？' }
