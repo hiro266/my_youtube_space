@@ -22,7 +22,7 @@ class Admin::UsersController < Admin::BaseController
 
   def destroy
     @user.destroy!
-    redirect_to admin_users_url, success: 'ユーザーを削除しました'
+    redirect_to admin_root_url, success: 'ユーザーを削除しました'
   end
 
   private
