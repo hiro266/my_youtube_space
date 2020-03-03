@@ -3,9 +3,7 @@ class Admin::PostsController < Admin::BaseController
   layout 'admin'
 
   def index
-    @q = Post.ransack(params[:q]) # 検索オブジェクト作成
-    @posts = @q.result.includes(:user)
-                .new_order.page(params[:page]) # 検索結果(何もなければ全件取得)
+    @posts = Post.includes(:user).new_order.page(params[:page])
   end
 
   def show; end
