@@ -13,7 +13,7 @@ class Admin::UsersController < Admin::BaseController
 
   def update
     if @user.update(user_params)
-      redirect_to admin_user_url, success: 'ユーザーを更新しました'
+      redirect_to admin_root_url, success: 'ユーザーを更新しました'
     else
       flash.now[:danger] = 'ユーザーを更新できませんでした'
       render :edit
