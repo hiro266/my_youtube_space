@@ -1,0 +1,22 @@
+.container.mb-5.pt-2
+  h1
+    | 掲示板一覧
+  .row
+    .col-md-12
+      table.table.table-striped
+        thead
+          tr
+            th[scope="col"]
+              = Post.human_attribute_name('id')
+            th[scope="col"]
+              = Post.human_attribute_name('title')
+            th[scope="col"]
+              = Post.human_attribute_name('user_name')
+            th[scope="col"]
+              = Post.human_attribute_name('create_at')
+            th[scope="col"]
+        tbody
+          = render @posts
+  .row
+    .col-md-12
+      = paginate @posts

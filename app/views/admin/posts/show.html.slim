@@ -1,0 +1,36 @@
+.container
+  .row
+    .col-md-10.offset-md-1.col-lg-8.offset-lg-2
+      h1
+        | 掲示板詳細
+      .text-right.mb-3
+        = link_to '編集', edit_admin_post_path(@post), class: 'btn btn-success'
+        = link_to '削除', admin_post_path(@post), class: 'btn btn-danger',
+          method: :delete, data: { confirm: '削除してよろしいですか？' }
+      table.table.table-bordered.bg-white
+        tbody
+          tr
+            th[scope="row"]
+              | ID
+            td
+              = @post.id
+          tr
+            th[scope="row"]
+              | タイトル
+            td
+              = @post.title
+          tr
+            th[scope="row"]
+              | Youtube URL
+            td
+              = @post.youtube_url
+          tr
+            th[scope="row"]
+              | 作成者
+            td
+              = @post.user.user_name
+          tr
+            th[scope="row"]
+              | 作成日時
+            td
+              = l @post.created_at, format: :long

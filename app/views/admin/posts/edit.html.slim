@@ -1,0 +1,16 @@
+.container
+  .row
+    .col-lg-8.offset-lg-2
+      = render 'shared/flash_message'
+      h1
+        | 掲示板編集
+      = render 'layouts/error_messages', object: @post
+      = form_with(model: @post, url: admin_post_path, local: true) do |f|
+        .form-group
+          = f.label :title
+          = f.text_field :title, class: "form-control"
+        .form-group
+          = f.label :youtube_url
+          = f.text_area :youtube_url, class: "form-control"
+        .action.mt-3
+          = f.submit class: "btn btn-primary"
