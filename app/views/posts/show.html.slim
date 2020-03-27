@@ -1,0 +1,19 @@
+.container.pb-5
+  .row
+    .col-sm-12.col-lg-9.mt-2.mb-2
+      .card
+        iframe[height="450" src="https://www.youtube.com/embed/#{@post.youtube_url.last(11)}"]
+        .card-body.d-flex
+          - @post.tags.each do |t|
+            .card-text.mr-1.badge.badge-success
+              = t.tag
+          .ml-auto
+            = link_to icon('fas', 'pen'), edit_post_path(@post), class: 'pr-2'
+            = link_to icon('fas', 'trash-alt'), post_path(@post), method: :delete, data: { confirm: '削除してよろしいですか？' }
+        h1.card-title.p-3
+          | #{@post.title}
+    .col-sm-12.col-lg-3.mt-2.mb-2
+      .card.h-75
+        = render 'comments/comments', comments: @comments
+      .m-0.pt-4
+        = render 'comments/form', post: @post, comment: @comment

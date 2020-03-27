@@ -1,0 +1,14 @@
+.col-sm-12.col-lg-6.mt-2.mb-2
+  .card
+    iframe[height="250" src="https://www.youtube.com/embed/#{post.youtube_url.last(11)}"]
+    .card-body.d-flex
+      - post.tags.each do |t|
+        .card-text.mr-1.badge.badge-success
+          = t.tag
+      .ml-auto
+        = link_to icon('fas', 'pen'), edit_post_path(post), class: 'pr-2'
+        = link_to icon('fas', 'trash-alt'), post_path(post), method: :delete, data: { confirm: '削除してよろしいですか？' }
+    = link_to post_path(post) do
+      .card-body
+        h1.card-title.text-dark
+          | #{post.title}

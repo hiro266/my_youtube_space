@@ -1,0 +1,22 @@
+.container.mb-5.pt-2
+  h1
+    | ユーザー一覧
+  .row
+    .col-md-12
+      table.table.table-striped
+        thead
+          tr
+            th[scope="col"]
+              = User.human_attribute_name('id')
+            th[scope="col"]
+              = User.human_attribute_name('user_name')
+            th[scope="col"]
+              = User.human_attribute_name('authority')
+            th[scope="col"]
+              = User.human_attribute_name('create_at')
+            th[scope="col"]
+        tbody
+          = render @users
+  .row
+    .col-md-12
+      = paginate @users

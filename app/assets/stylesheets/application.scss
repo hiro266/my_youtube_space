@@ -1,0 +1,9 @@
+@import 'bootstrap-material-design/dist/css/bootstrap-material-design';
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+@import 'top.scss';
+@import 'post/show.scss';
+
+.header-link {
+  line-height: 40px;
+}

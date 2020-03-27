@@ -1,0 +1,5 @@
+.container
+  = render 'search_form', url: posts_path, q: @q, t: @t
+  .row
+    = render @posts
+  = paginate @posts
