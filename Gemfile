@@ -49,6 +49,7 @@ group :development do
   gem 'pry-byebug'
   gem 'letter_opener'
   gem 'letter_opener_web'
+  gem 'capistrano'
 end
 
 group :test do
