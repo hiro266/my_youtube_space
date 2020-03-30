@@ -50,6 +50,12 @@ group :development do
   gem 'letter_opener'
   gem 'letter_opener_web'
   gem 'capistrano'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano3-puma'
+  gem 'capistrano-nginx'
+  gem 'capistrano-yarn'
 end
 
 group :test do
@@ -75,3 +81,5 @@ gem 'rails-i18n', '~> 5.1'
 gem 'ransack'
 gem 'slim-rails'
 gem 'sorcery'
+gem 'ed25519'
+gem 'bcrypt_pbkdf'
