@@ -1,8 +1,65 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.12.1"
 
-set :application, "my_app_name"
-set :repo_url, "git@example.com:me/my_repo.git"
+set :application, "my_youtube_space"
+set :repo_url, "git@github.com:hiro266/my_youtube_space.git"
+set :user, "niwa"
+set :deploy_to, "/var/www/rails/my_youtube_space"
+set :linked_files, %w[config/master.key config/database.yml config/settings.yml]
+set :linked_dirs, %w[log tmp/pids tmp/cache tmp/sockets public/system vendor/bundle]
+set :rbenv_ruby, File.read('.ruby-version').strip
+set :puma_threds, [4, 16]
+set :puma_workers, 0
+set :puma_bind, "unix:///var/www/rails/my_youtube_space/tmp/sockets/puma.sock"
+set :puma_state, "/var/www/rails/my_youtube_space/tmp/pids/puma.state"
+set :puma_pid, "/var/www/rails/my_youtube_space/tmp/pids/puma.pid"
+set :puma_access_log, "/var/www/rails/my_youtube_space/log/puma.error.log"
+set :puma_error_log, "/var/www/rails/my_youtube_space/log/puma.access.log"
+set :puma_preload_app, true
+
+namespace :puma do
+  desc 'Create Directories for Puma Pids and Socket'
+  task :make_dirs do
+    on roles(:app) do
+      execute "mkdir /var/www/rails/my_youtube_space/tmp/sockets -p"
+      execute "mkdir /var/www/rails/my_youtube_space/tmp/pids -p"
+    end
+  end
+
+  before :start, :make_dirs
+end
+
+namespace :deploy do
+  desc 'upload important files'
+  task :upload do
+    on roles(:app) do
+      sudo :mkdir, '-p', "/var/www/rails/my_youtube_space/config"
+      sudo %[chown -R #{fetch(:user)}.#{fetch(:user)} /var/www/rails/#{fetch(:application)}]
+      sudo :mkdir, '-p', '/etc/nginx/sites-enabled'
+      sudo :mkdir, '-p', '/etc/nginx/sites-available'
+
+      upload!('config/database.yml', "/var/www/rails/my_youtube_space/config/database.yml")
+      upload!('config/master.key', "/var/www/rails/my_youtube_space/config/master.key")
+    end
+  end
+
+  desc 'Create database'
+  task :db_create do
+    on roles(:db) do
+      with rails_env: fetch(:rails_env) do
+        within release_path do
+          execute :bundle, :exec, :rake, 'db:create'
+        end
+      end
+    end
+  end
+
+  before :starting, :upload
+  before 'check:linked_files', 'puma:nginx_config'
+end
+
+after 'deploy:published', 'nginx:restart'
+before 'deploy:migrate', 'deploy:db_create'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
