@@ -2,27 +2,31 @@
 lock "~> 3.12.1"
 
 set :application, "my_youtube_space"
-set :repo_url, "git@github.com:hiro266/my_youtube_space.git"
+# https形式で検証。
+set :repo_url, "https://github.com/hiro266/my_youtube_space.git"
+set :git_http_username, "hiro266"
+set :git_http_password, "98d1f0ce8b45295ceea0b5186a7cb09464a4362e"
+
 set :user, "niwa"
 set :deploy_to, "/var/www/rails/my_youtube_space"
-set :linked_files, %w[config/master.key config/database.yml config/settings.yml]
+set :linked_files, %w[config/master.key config/database.yml]
 set :linked_dirs, %w[log tmp/pids tmp/cache tmp/sockets public/system vendor/bundle]
-set :rbenv_ruby, File.read('.ruby-version').strip
+set :rbenv_ruby, '2.6.5'
 set :puma_threds, [4, 16]
 set :puma_workers, 0
-set :puma_bind, "unix:///var/www/rails/my_youtube_space/tmp/sockets/puma.sock"
-set :puma_state, "/var/www/rails/my_youtube_space/tmp/pids/puma.state"
-set :puma_pid, "/var/www/rails/my_youtube_space/tmp/pids/puma.pid"
-set :puma_access_log, "/var/www/rails/my_youtube_space/log/puma.error.log"
-set :puma_error_log, "/var/www/rails/my_youtube_space/log/puma.access.log"
+set :puma_bind, "unix:///var/www/rails/my_youtube_space/shared/tmp/sockets/puma.sock"
+set :puma_state, "/var/www/rails/my_youtube_space/shared/tmp/pids/puma.state"
+set :puma_pid, "/var/www/rails/my_youtube_space/shared/tmp/pids/puma.pid"
+set :puma_access_log, "/var/www/rails/my_youtube_space/shared/log/puma.error.log"
+set :puma_error_log, "/var/www/rails/my_youtube_space/shared/log/puma.access.log"
 set :puma_preload_app, true
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
   task :make_dirs do
     on roles(:app) do
-      execute "mkdir /var/www/rails/my_youtube_space/tmp/sockets -p"
-      execute "mkdir /var/www/rails/my_youtube_space/tmp/pids -p"
+      execute "mkdir /var/www/rails/my_youtube_space/shared/tmp/sockets -p"
+      execute "mkdir /var/www/rails/my_youtube_space/shared/tmp/pids -p"
     end
   end
 
@@ -33,13 +37,13 @@ namespace :deploy do
   desc 'upload important files'
   task :upload do
     on roles(:app) do
-      sudo :mkdir, '-p', "/var/www/rails/my_youtube_space/config"
+      sudo :mkdir, '-p', "/var/www/rails/my_youtube_space/shared/config"
       sudo %[chown -R #{fetch(:user)}.#{fetch(:user)} /var/www/rails/#{fetch(:application)}]
       sudo :mkdir, '-p', '/etc/nginx/sites-enabled'
       sudo :mkdir, '-p', '/etc/nginx/sites-available'
 
-      upload!('config/database.yml', "/var/www/rails/my_youtube_space/config/database.yml")
-      upload!('config/master.key', "/var/www/rails/my_youtube_space/config/master.key")
+      upload!('config/database.yml', "/var/www/rails/my_youtube_space/shared/config/database.yml")
+      upload!('config/master.key', "/var/www/rails/my_youtube_space/shared/config/master.key")
     end
   end
 
