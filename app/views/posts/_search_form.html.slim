@@ -1,5 +1,5 @@
 = search_form_for q, url: url do |f|
   .form-inline.my-2.my-lg-0
-    = f.search_field :title_or_tags_tag_cont_any, class: "form-control mr-sm-2 w-75", placeholder: '検索'
+    = f.search_field :title_or_tags_tag_cont_any, class: "form-control mr-sm-2 w-75", placeholder: '検索ワード'
     .input-group-append
-      = f.submit "検索ワード", class: "btn btn-primary btn-raised my-2 my-sm-0"
+      = f.submit "検索", class: "btn btn-primary btn-raised my-2 my-sm-0"
