@@ -41,6 +41,8 @@ role :db,  'niwa@18.182.109.67'
 #
 # Global options
 # --------------
+
+# EC2にSSH接続するための秘密鍵
  set :ssh_options, {
    keys: %w(/Users/niwayamahiroki/.ssh/my-youtube-space-ssh-key_key_rsa)
  }

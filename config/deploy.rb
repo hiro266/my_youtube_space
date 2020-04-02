@@ -2,11 +2,7 @@
 lock "~> 3.12.1"
 
 set :application, "my_youtube_space"
-# https形式で検証。
-set :repo_url, "https://github.com/hiro266/my_youtube_space.git"
-set :git_http_username, "hiro266"
-set :git_http_password, "98d1f0ce8b45295ceea0b5186a7cb09464a4362e"
-
+set :repo_url, "git@github.com:hiro266/my_youtube_space.git"
 set :user, "niwa"
 set :deploy_to, "/var/www/rails/my_youtube_space"
 set :linked_files, %w[config/master.key config/database.yml]
